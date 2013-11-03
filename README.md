@@ -8,10 +8,6 @@ Version 0.01
 
 # SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use WWW::Sixpack;
 
     my $sixpack = WWW::Sixpack->new();
