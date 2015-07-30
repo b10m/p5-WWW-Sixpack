@@ -1,6 +1,8 @@
 Revision history for WWW-Sixpack
 
 {{$NEXT}}
+
+0.04  2015-07-30 20:25:47 CEST
         Documented traffic_fraction option
         Moved to Dist::Zilla setup
 

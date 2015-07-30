@@ -18,7 +18,7 @@ WWW::Sixpack - Perl client library for SeatGeek's Sixpack A/B testing framework 
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
