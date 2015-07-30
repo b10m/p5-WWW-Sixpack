@@ -1,5 +1,9 @@
 Revision history for WWW-Sixpack
 
+{{$NEXT}}
+        Documented traffic_fraction option
+        Moved to Dist::Zilla setup
+
 0.03    2013-11-05
         Making sure the participate function always returns an alernative,
         even on failure.

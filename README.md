@@ -2,10 +2,6 @@
 
 WWW::Sixpack - Perl client library for SeatGeek's Sixpack A/B testing framework http://sixpack.seatgeek.com/
 
-# VERSION
-
-Version 0.03
-
 # SYNOPSIS
 
     use WWW::Sixpack;
@@ -14,13 +10,13 @@ Version 0.03
 
     # Participate in a test (creates the test if necessary)
     my $alternative = $sixpack->participate('new-test', [ 'alt-1', 'alt-2' ],
-        { ip_address => $client_ip, user_agent => $client_ua });
+        { ip_address => $client_ip, user_agent => $client_ua,
+          force => 'alt-2', traffic_fraction => 0.10 });
 
     if( $alternative->{alternative}{name} eq 'alt-1' ) {
         # show data for variant alt-1
     } else {
         # show data for variant alt-2
-
     }
 
     # Convert
@@ -42,7 +38,7 @@ Constructs the WWW::Sixpack object. Options that can be passed in are:
 
 - `ua`
 
-    The useragent to use (defaults to [LWP::UserAgent](http://search.cpan.org/perldoc?LWP::UserAgent)).
+    The useragent to use (defaults to [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent)).
 
 ## participate
 
@@ -62,10 +58,6 @@ Arguments:
 
     An optional hashref with the following options:
 
-    - `force`
-
-        Force a specific alternative to be returned
-
     - `user_agent`
 
         User agent of the user making a request. Used for bot detection.
@@ -73,6 +65,14 @@ Arguments:
     - `ip_address`
 
         IP address of user making a request. Used for bot detection.
+
+    - `force`
+
+        (optional) Force a specific alternative to be returned
+
+    - `traffic_fraction`
+
+        (optional) Sixpack allows for limiting experiments to a subset of traffic. You can pass the percentage of traffic you'd like to expose the test to as a decimal number here. (0.10 for 10%)
 
 ## convert
 
@@ -108,8 +108,6 @@ You can find documentation for this module with the perldoc command.
 
     perldoc WWW::Sixpack
 
-
-
 You can also look for information at:
 
 - RT: CPAN's request tracker (report bugs here)
@@ -128,14 +126,7 @@ You can also look for information at:
 
     [http://search.cpan.org/dist/WWW-Sixpack/](http://search.cpan.org/dist/WWW-Sixpack/)
 
-# LICENSE AND COPYRIGHT
+# LICENSE
 
-Copyright 2013 Menno Blom.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See [http://dev.perl.org/licenses/](http://dev.perl.org/licenses/) for more information.
-
-
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
