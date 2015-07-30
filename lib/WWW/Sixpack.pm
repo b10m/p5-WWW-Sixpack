@@ -16,10 +16,6 @@ our $VALID_NAME_RE = qr/^[a-z0-9][a-z0-9\-_ ]*$/;
 
 WWW::Sixpack - Perl client library for SeatGeek's Sixpack A/B testing framework http://sixpack.seatgeek.com/
 
-=head1 VERSION
-
-Version 0.03
-
 =cut
 
 our $VERSION = '0.03';
@@ -32,13 +28,13 @@ our $VERSION = '0.03';
 
     # Participate in a test (creates the test if necessary)
     my $alternative = $sixpack->participate('new-test', [ 'alt-1', 'alt-2' ],
-        { ip_address => $client_ip, user_agent => $client_ua });
+        { ip_address => $client_ip, user_agent => $client_ua,
+          force => 'alt-2', traffic_fraction => 0.10 });
 
     if( $alternative->{alternative}{name} eq 'alt-1' ) {
         # show data for variant alt-1
     } else {
         # show data for variant alt-2
-
     }
 
     # Convert
@@ -102,10 +98,6 @@ An optional hashref with the following options:
 
 =over 4
 
-=item C<force>
-
-Force a specific alternative to be returned
-
 =item C<user_agent>
 
 User agent of the user making a request. Used for bot detection.
@@ -113,6 +105,14 @@ User agent of the user making a request. Used for bot detection.
 =item C<ip_address>
 
 IP address of user making a request. Used for bot detection.
+
+=item C<force>
+
+(optional) Force a specific alternative to be returned
+
+=item C<traffic_fraction>
+
+(optional) Sixpack allows for limiting experiments to a subset of traffic. You can pass the percentage of traffic you'd like to expose the test to as a decimal number here. (0.10 for 10%)
 
 =back
 
@@ -250,17 +250,11 @@ L<http://search.cpan.org/dist/WWW-Sixpack/>
 
 =back
 
-=head1 LICENSE AND COPYRIGHT
+=head1 LICENSE
 
-Copyright 2013 Menno Blom.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See L<http://dev.perl.org/licenses/> for more information.
-
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
 
-1; # End of WWW::Sixpack
+1;
